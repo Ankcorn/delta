@@ -1,0 +1,30 @@
+service:
+  name: delta
+
+frameworkVersion: ">=1.50.0"
+
+custom:
+  stage: ${opt:stage, 'local'} # Fallback to "local" if not set via --stage flag
+
+
+plugins:
+  - serverless-webpack
+  - serverless-plugin-tracing
+  - serverless-offline
+
+provider:
+  name: aws
+  stackTags:
+    Environment: ${self:custom.stage}
+  runtime: nodejs12.x
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1 # Make sure AWS-SDK reuses HTTP connections
+
+functions:
+  # Github Integration
+  - ${file(./functions/github/webhook/function.yml)}
+
+resources:
+
+  # IAM
+  - ${file(./functions/github/webhook/function.yml)}

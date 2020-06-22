@@ -1,0 +1,23 @@
+{
+  "name": "delta",
+  "version": "0.0.1",
+  "description": "Serverless CI/CD for Serverless",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ankcorn/delta.git"
+  },
+  "keywords": [
+    "CI/CD",
+    "Serverless"
+  ],
+  "author": "Thomas Ankcorn",
+  "license": "UNLICENCED",
+  "bugs": {
+    "url": "https://github.com/Ankcorn/delta/issues"
+  },
+  "homepage": "https://github.com/Ankcorn/delta#readme"
+}
