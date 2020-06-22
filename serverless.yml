@@ -8,9 +8,7 @@ custom:
 
 
 plugins:
-  - serverless-webpack
-  - serverless-plugin-tracing
-  - serverless-offline
+  - serverless-plugin-ncc
 
 provider:
   name: aws
@@ -24,7 +22,3 @@ functions:
   # Github Integration
   - ${file(./functions/github/webhook/function.yml)}
 
-resources:
-
-  # IAM
-  - ${file(./functions/github/webhook/function.yml)}

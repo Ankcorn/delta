@@ -1,0 +1,5 @@
+github-to-eventbridge:
+  handler: functions/github/webhook/index.handler
+  events:
+    - httpApi: 'POST /github/webhook'
+    
