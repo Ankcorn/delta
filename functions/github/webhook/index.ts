@@ -7,8 +7,8 @@ const api = apigateway({
     inputType: "body",
 })
 
-function app(event) {
-    console.log(event);
+function app(event, context) {
+    console.log(event, context);
     return {
         value: 'Success'
     }

@@ -6,9 +6,9 @@ frameworkVersion: ">=1.50.0"
 custom:
   stage: ${opt:stage, 'local'} # Fallback to "local" if not set via --stage flag
 
-
 plugins:
   - serverless-plugin-ncc
+
 
 provider:
   name: aws
@@ -17,8 +17,12 @@ provider:
   runtime: nodejs12.x
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1 # Make sure AWS-SDK reuses HTTP connections
+    LACONIA_CONFIG_DELTA_DYNAMO_TABLE: datastore-${self:provider.stage}
 
 functions:
   # Github Integration
   - ${file(./functions/github/webhook/function.yml)}
 
+
+resources:
+  - ${file(./infrastructure/dynamodb/datastore.yml)}
