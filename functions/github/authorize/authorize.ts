@@ -15,9 +15,9 @@ interface IGithubAuthorizeContext {
     Users: typeof Users
 }
 
-async function authorize(input: IAuthInput, { oauth, Github }: IGithubAuthorizeContext) {
+async function authorize(input: IAuthInput, { oauth, Github, Users }: IGithubAuthorizeContext) {
     const result = await oauth({ type: 'token', code: input.code });
-    const github = new Github({ auth: result.token })
+    const github = new Github({ auth: result.token });
     const user = await github.users.getAuthenticated();
 
     await Users.put({
@@ -25,11 +25,11 @@ async function authorize(input: IAuthInput, { oauth, Github }: IGithubAuthorizeC
         email: user.data.email,
         githubToken: result.token,
         name: user.data.name
-    })
+    });
 
     return {
         message: "Success"
-    }
+    };
 }
 
 export default authorize;
