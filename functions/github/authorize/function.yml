@@ -1,5 +1,5 @@
 github-authorizer:
   handler: functions/github/authorize/index.handler
   events:
-    - httpApi: 'POST /github/authorize'
+    - httpApi: 'GET /github/authorize'
     

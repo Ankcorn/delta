@@ -1,28 +1,33 @@
 service:
   name: delta
 
-frameworkVersion: ">=1.50.0"
+package:
+  exclude:
+    - node_modules/**
 
 custom:
   stage: ${opt:stage, 'local'} # Fallback to "local" if not set via --stage flag
 
 plugins:
-  - serverless-plugin-ncc
+  - serverless-plugin-typescript
+  - serverless-offline
 
 
 provider:
   name: aws
+  region: eu-west-1
   stackTags:
     Environment: ${self:custom.stage}
   runtime: nodejs12.x
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1 # Make sure AWS-SDK reuses HTTP connections
-    LACONIA_CONFIG_DELTA_DYNAMO_TABLE: datastore-${self:provider.stage}
+    LACONIA_CONFIG_GITHUB_CLIENT_ID: ssm:github-client-id
+    LACONIA_CONFIG_GITHUB_CLIENT_SECRET: ssm:github-client-secret
 
 functions:
   # Github Integration
   - ${file(./functions/github/webhook/function.yml)}
-
+  - ${file(./functions/github/authorize/function.yml)}
 
 resources:
   - ${file(./infrastructure/dynamodb/datastore.yml)}
