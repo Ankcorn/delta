@@ -16,6 +16,7 @@ plugins:
 provider:
   name: aws
   region: eu-west-1
+  stage: ${self:custom.stage}
   stackTags:
     Environment: ${self:custom.stage}
   runtime: nodejs12.x

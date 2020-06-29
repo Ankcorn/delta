@@ -1,5 +1,5 @@
 
-import * as laconia from "@laconia/core";
+import laconia from "@laconia/core";
 import { apigateway } from "@laconia/adapter-api";
 import { Handler } from "aws-lambda";
 
@@ -14,4 +14,4 @@ function app(event, context) {
     }
 }
 
-export const handler: Handler = laconia(api(app))
+export const handler: Handler = laconia(api(app));

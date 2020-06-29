@@ -1,8 +1,8 @@
 Resources:
-  SingleTableDesignDynamoDBTable:
+  DeltaTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: datastore-${self:provider.stage}
+      TableName: delta-store-${self:provider.stage}
       AttributeDefinitions:
         - AttributeName: pk
           AttributeType: S
